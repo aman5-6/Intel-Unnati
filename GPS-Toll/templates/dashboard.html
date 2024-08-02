@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome, {{ session.username }}</h2>
+        <h3>Your Toll Tax Details:</h3>
+        <table>
+            <tr>
+                <th>Vehicle ID</th>
+                <th>Balance</th>
+            </tr>
+            {% for _, row in user_account.iterrows() %}
+            <tr>
+                <td>{{ row.vehicle_id }}</td>
+                <td>{{ row.balance }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+
+</html>
